@@ -17,19 +17,8 @@ public class Enemy extends LivingThing {
      * @param attack モンスターの攻撃力
      */
     public Enemy (String name, int maximumHP, int attack) {
-        super(name,maximumHP,attack);
+        super(name, maximumHP, attack);
     }
-
-    /**
-     * getterメソッドと同等。生死をboolean表現しているためメソッド名をisDead()とした。
-     * @return boolean
-     */
-
-    /**
-     * Heroへ攻撃するメソッド。
-     * attackに応じて乱数でダメージを算出し、hero.wounded()によりダメージ処理を実行。
-     * @param hero 攻撃対象
-     */
 
     /**
      * 自身へ攻撃されたときのダメージ処理をするメソッド。
@@ -38,10 +27,10 @@ public class Enemy extends LivingThing {
      * @Override
      */
     public void wounded(int damage){
-        hitPoint -= damage;
-        if( hitPoint < 0 ) {
-            dead = true;
-            System.out.printf("モンスター%sは倒れた。\n", name);
+        setHitPoint(getHitPoint() - damage);
+        if( getHitPoint() < 1 ) {
+            setDead(true);
+            System.out.printf("モンスター%sは倒れた。\n", getName());
         }
     }
 

@@ -9,15 +9,19 @@ public class EnemyTest {
      * 「死んでる状態では攻撃できない」ことを確認。
      */
     @Test
-    public void attack() {
-        int heroHP = 10;
+    public void attack () {
+        int heroHP=10;
         Hero hero = new Hero("テスト勇者", heroHP, 5);
         Enemy enemy = new Enemy("テストスライム", 6, 3);
-        enemy.dead = true;
-        for(int i=0; i<10; i++) {
-            enemy.attack(hero); //乱数で0ダメージとなることもあるため、複数回実行してみる。
+        enemy.setDead(true);
+        for (int i = 0; ; ) {
+            if (hero.getHitPoint()>0) {
+                enemy.attack(hero); //乱数で0ダメージとなることもあるため、複数回実行してみる。
+            }
+            else {
+                break;
+            }
         }
-        assertEquals(heroHP, hero.hitPoint);
+        assertEquals(heroHP, hero.getHitPoint());
     }
-
 }
